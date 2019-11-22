@@ -19,7 +19,8 @@ phases:
     commands:
       - npm run build
       
-  artifacts:
+
+artifacts:
     files:
       - app.js
       - index.html
