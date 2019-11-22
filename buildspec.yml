@@ -15,13 +15,12 @@ phases:
       - echo Installing source NPM dependencies...
       - npm install
         
-  
 
 artifacts:
 	type: zip
     files:
-      - app.js
-      - index.html
-      - package.json
-      - node_modules/**/*
-      - backend/**/*
+      - bulletin-board-app/app.js
+      - bulletin-board-app/index.html
+      - bulletin-board-app/package.json
+      - bulletin-board-app/node_modules/**/*
+      - bulletin-board-app/backend/**/*
