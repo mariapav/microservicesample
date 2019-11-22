@@ -1,35 +1,23 @@
 version: 0.2
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: beep-demo
-  namespace: default
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      beep: web
-  template:
-    metadata:
-      labels:
-        beep: web
-    spec:
-      containers:
-      - name: beep-site
-        image: mariatest:1.0
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: beep-entrypoint
-  namespace: default
-spec:
-  type: NodePort
-  selector:
-    beep: web
-  ports:
-  - port: 8080
-    targetPort: 8080
-    nodePort: 30001
-
+phases:
+ install:
+    runtime-versions:
+      nodejs: 8 
+    
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+        
+  build:
+    commands:
+      - npm run build
+      
+  artifacts:
+  files:
+    - app.js
+    - index.html
+    - package.json
+    - node_modules/*
+    - backend/*
