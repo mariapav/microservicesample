@@ -38,3 +38,5 @@ phases:
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - aws sts get-caller-identity
       - aws eks update-kubeconfig --name babelhealth
+      - kubectl apply -f ./bulletin-board-app/Templates/Kubernetes_Service.yml
+      - kubectl apply -f ./bulletin-board-app/Templates/bbapp_Egress_Rule_For_Istio.yml
