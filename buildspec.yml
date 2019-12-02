@@ -12,10 +12,11 @@ phases:
     
   pre_build:
     commands:
+      - LABEL=$(echo "bulletin-board-app_$CODEBUILD_RESOLVED_SOURCE_VERSION")
       - echo Installing source NPM dependencies...
       - npm install
   build:
     commands:
-      - cd ./src
+      - cd ./bulletin-board-app
       - $(aws ecr get-login --no-include-email)    
-      
+      docker build --tag "$AWS_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/babelhealth:$LABEL" -f ./Dockerfile .
