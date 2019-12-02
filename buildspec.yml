@@ -13,12 +13,10 @@ phases:
   pre_build:
     commands:
       - LABEL=$(echo "bulletin-board-app_$CODEBUILD_RESOLVED_SOURCE_VERSION")
-	- export AWS_ACCOUNT=$(echo $CODEBUILD_BUILD_ARN |cut -f5 -d:)
+      - export AWS_ACCOUNT=$(echo $CODEBUILD_BUILD_ARN |cut -f5 -d:)
       - export _PROFILE_=${_PROFILE_}
       - ls -l .
       - echo $AWS_ACCOUNT
-      - echo Installing source NPM dependencies...
-      - npm install
   build:
     commands:
       - cd ./bulletin-board-app
