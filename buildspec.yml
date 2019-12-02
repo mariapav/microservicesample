@@ -14,6 +14,10 @@ phases:
     commands:
       - echo Installing source NPM dependencies...
       - npm install
+  build:
+    commands:
+      - cd ./src
+      - $(aws ecr get-login --no-include-email)    
       
 artifacts:
 	type: zip
