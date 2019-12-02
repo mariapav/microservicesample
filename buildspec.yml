@@ -19,11 +19,3 @@ phases:
       - cd ./src
       - $(aws ecr get-login --no-include-email)    
       
-artifacts:
-	type: zip
-    files:
-      - bulletin-board-app/app.js
-      - bulletin-board-app/index.html
-      - bulletin-board-app/package.json
-      - bulletin-board-app/node_modules/**/*
-      - bulletin-board-app/backend/**/*
