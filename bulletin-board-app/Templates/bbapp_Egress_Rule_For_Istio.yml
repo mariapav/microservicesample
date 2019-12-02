@@ -1,0 +1,38 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: aws-bulletin-board-app
+  namespace: babelhealth
+  labels:
+    app: bulletin-board-app
+spec:
+  hosts:
+  - bbapp.us-east-1.amazonaws.com
+  ports:
+  - number: 80
+    name: http-port
+    protocol: HTTP
+  - number: 443
+    name: https-port
+    protocol: HTTPS
+  resolution: DNS
+  location: MESH_EXTERNAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: apipa
+  namespace: babelhealth
+spec:
+  hosts:
+  - localhost
+  addresses:
+  - 169.254.169.254
+  ports:
+  - number: 80
+    name: http
+    protocol: tcp
+  location: MESH_EXTERNAL
+  resolution: STATIC
+  endpoints:
+  - address: 169.254.169.254
