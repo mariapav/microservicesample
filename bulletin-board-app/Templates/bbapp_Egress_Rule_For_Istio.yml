@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
-  name: aws-bulletin-board-app
+  name: aws-bb-app
   namespace: babelhealth
   labels:
-    app: bulletin-board-app
+    app: bb-app
 spec:
   hosts:
  # - bbapp.us-east-1.amazonaws.com
