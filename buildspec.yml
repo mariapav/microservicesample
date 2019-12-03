@@ -19,6 +19,7 @@ phases:
       - echo $AWS_ACCOUNT
       - sed -i "s/bulletin-board-app/$LABEL/" ./bulletin-board-app/Templates/Kubernetes_Service.yml
       - sed -i "s/_PROFILE_/$_PROFILE_/g" ./bulletin-board-app/Templates/Kubernetes_Service.yml     
+      - sed -i "s#_SUBNETS_#$SUBNETS#g" ./bulletin-board-app//Templates/Kubernetes_Service.yml
       - sed -i "s/_AWS_ACCOUNT_/$AWS_ACCOUNT/g" ./bulletin-board-app/Templates/Kubernetes_Service.yml
       - sed -i "s/_ENV_/$_ENV_/g" ./bulletin-board-app/Templates/bbapp_Egress_Rule_For_Istio.yml
       - $(aws ecr get-login --no-include-email)
