@@ -7,8 +7,6 @@ phases:
       - chmod +x ./kubectl ./aws-iam-authenticator
       - export PATH=$PWD/:$PATH
       - apt-get update && apt-get -y install dnsutils jq python3-pip python3-dev && pip3 install --upgrade awscli
-    runtime-versions:
-      nodejs: 8 
     
   pre_build:
     commands:
