@@ -7,7 +7,7 @@ metadata:
     app: bulletin-board-app
 spec:
   hosts:
-  - bbapp.us-east-1.amazonaws.com
+ # - bbapp.us-east-1.amazonaws.com
   - "*.us-east-1.amazonaws.com"
   ports:
   - number: 80
