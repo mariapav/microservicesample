@@ -6,19 +6,22 @@ metadata:
   labels:
     app: bb-app
 spec:
-  hosts:
+ hosts:
  - sqs.us-east-1.amazonaws.com
  - s3.us-east-1.amazonaws.com
-  - "*.us-east-1.amazonaws.com"
-  ports:
-  - number: 80
-    name: http-port
-    protocol: HTTP
-  - number: 443
-    name: https-port
-    protocol: HTTPS
-  resolution: DNS
-  location: MESH_EXTERNAL
+ - secretsmanager.us-east-1.amazonaws.com
+ - sqs.us-east-1.amazonaws.com
+ - s3.us-east-1.amazonaws.com
+ - "*.us-east-1.amazonaws.com"
+ location: MESH_EXTERNAL
+ ports:
+ - name: http-port
+   number: 80
+   protocol: HTTP
+ - name: https-port
+   number: 443
+   protocol: HTTPS
+ resolution: NONE
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
