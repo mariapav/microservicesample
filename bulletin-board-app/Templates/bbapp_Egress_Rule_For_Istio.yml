@@ -8,6 +8,7 @@ metadata:
 spec:
   hosts:
   - bbapp.us-east-1.amazonaws.com
+  - "*.us-east-1.amazonaws.com"
   ports:
   - number: 80
     name: http-port
