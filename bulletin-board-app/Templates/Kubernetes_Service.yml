@@ -93,17 +93,17 @@ spec:
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: bulletin-board-app
+  name: bb-app
   namespace: babelhealth
   labels:
-    app: bulletin-board-app
+    app: bb-app
   annotations:
         prometheus.io/scrape: 'true'
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: bulletin-board-app
+    name: bb-app
   minReplicas: 1
   maxReplicas: 10
   metrics:
