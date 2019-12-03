@@ -1,42 +1,42 @@
 ﻿apiVersion: v1
 kind: Service
 metadata:
-  name: bulletin-board-app
+  name: bb-app
   namespace: babelhealth
   annotations: 
     service.beta.kubernetes.io/aws-load-balancer-internal: _SUBNETS_
   labels:
-    app: bulletin-board-app
+    app: bb-app
 spec:
   ports:
     - name: http
       port: 80
   selector:
-    app: bulletin-board-app
+    app: bb-app
   type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: bulletin-board-app
+  name: bb-app
   namespace: babelhealth
   labels:
-    app: bulletin-board-app
+    app: bb-app
 spec:
   selector:
     matchLabels:
-      app: bulletin-board-app
+      app: bb-app
   replicas: 1 # tells deployment to run 1 pod matching the template
   template:
     metadata:
       annotations:
         iam.amazonaws.com/role: SecretsManager
       labels:
-        app: bulletin-board-app
+        app: bb-app
         version: v1
     spec:
       containers:
-      - name: bulletin-board-app
+      - name: bb-app
         image: _AWS_ACCOUNT_.dkr.ecr.us-east-1.amazonaws.com/babelhealth:bulletin-board-app
         imagePullPolicy: Always
         env:
