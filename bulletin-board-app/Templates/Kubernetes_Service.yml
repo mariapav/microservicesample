@@ -30,7 +30,7 @@ spec:
   template:
     metadata:
       annotations:
-        iam.amazonaws.com/role: SecretsManager
+        iam.amazonaws.com/role: EKS_ServiceRole_ReadOnly_Kubernetes
       labels:
         app: bb-app
         version: v1
