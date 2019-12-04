@@ -20,6 +20,7 @@ phases:
       - sed -i "s#_SUBNETS_#$SUBNETS#g" ./bulletin-board-app//Templates/Kubernetes_Service.yml
       - sed -i "s/_AWS_ACCOUNT_/$AWS_ACCOUNT/g" ./bulletin-board-app/Templates/Kubernetes_Service.yml
       - sed -i "s/_ENV_/$_ENV_/g" ./bulletin-board-app/Templates/bbapp_Egress_Rule_For_Istio.yml
+      - cat ./bulletin-board-app/Templates/Kubernetes_Service.yml
       - $(aws ecr get-login --no-include-email)
       - export KUBECONFIG=$HOME/.kube/config
   build:
@@ -38,7 +39,7 @@ phases:
       - aws sts get-caller-identity
       - aws eks update-kubeconfig --name babelhealth
       - kubectl apply -f ./Templates/Kubernetes_Service.yml
-     # - kubectl apply -f ./Templates/bbapp_Egress_Rule_For_Istio.yml
+      - kubectl apply -f ./Templates/bbapp_Egress_Rule_For_Istio.yml
       - printf '[{"name":"bulletin-board-app","imageUri":"%s"}]' "$AWS_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/babelhealth:$LABEL" > ../api.json
       
 artifacts:
