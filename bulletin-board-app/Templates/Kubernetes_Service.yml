@@ -39,7 +39,7 @@ spec:
       - name: bb-app
         image: _AWS_ACCOUNT_.dkr.ecr.us-east-1.amazonaws.com/babelhealth:bulletin-board-app
         imagePullPolicy: Always
-         env:
+        env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "_PROFILE_"
         imagePullPolicy: Always
@@ -90,6 +90,7 @@ spec:
             # Maximum number of times to retry the aws calls.
             # defaults to 10.
           - --aws-max-retries=10
+---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
