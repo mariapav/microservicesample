@@ -39,7 +39,7 @@ phases:
       - aws sts get-caller-identity
       - aws eks update-kubeconfig --name babelhealth
       - kubectl apply -f ./Templates/Kubernetes_Service.yml
-      - kubectl apply -f ./Templates/bbapp_Egress_Rule_For_Istio.yml
+      #- kubectl apply -f ./Templates/bbapp_Egress_Rule_For_Istio.yml
       - printf '[{"name":"bulletin-board-app","imageUri":"%s"}]' "$AWS_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/babelhealth:$LABEL" > ../api.json
       
 artifacts:
