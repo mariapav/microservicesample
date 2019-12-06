@@ -14,9 +14,6 @@ phases:
     
   pre_build:
      commands:
-      - echo "INSTALLING NPM"
-      - npm install
-      - npm -v
       - LABEL=$(echo "bulletin-board-app_$CODEBUILD_RESOLVED_SOURCE_VERSION")
       - export AWS_ACCOUNT=$(echo $CODEBUILD_BUILD_ARN |cut -f5 -d:)
       - export _PROFILE_=${_PROFILE_}
@@ -30,10 +27,14 @@ phases:
       - cat ./bulletin-board-app/Templates/Kubernetes_Service.yml
       - $(aws ecr get-login --no-include-email)
       - export KUBECONFIG=$HOME/.kube/config
-  build:
-     commands:
-      - npm run build
       - cd ./bulletin-board-app
+      - echo "INSTALLING NPM"
+      - npm install
+      - npm -v
+  build:
+     commands:  
+      - cd ./bulletin-board-app
+      - npm run build
       - ls -l .
       - $(aws ecr get-login --no-include-email)    
       - docker build --tag "$AWS_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/babelhealth:$LABEL" -f ./Dockerfile .
