@@ -19,7 +19,7 @@ phases:
       - export _PROFILE_=${_PROFILE_}
       - ls -l .
       - echo $AWS_ACCOUNT
-      - echo "Label: $LABEL"
+      - echo $LABEL
       - sed -i "s/bulletin-board-app/$LABEL/" ./bulletin-board-app/Templates/Kubernetes_Service.yml
       - sed -i "s/_PROFILE_/$_PROFILE_/g" ./bulletin-board-app/Templates/Kubernetes_Service.yml     
       - sed -i "s#_SUBNETS_#$SUBNETS#g" ./bulletin-board-app//Templates/Kubernetes_Service.yml
