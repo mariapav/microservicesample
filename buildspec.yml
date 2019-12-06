@@ -33,7 +33,6 @@ phases:
       - npm -v
   build:
      commands:  
-      - cd ./bulletin-board-app
       - npm run build
       - ls -l .
       - $(aws ecr get-login --no-include-email)    
