@@ -33,7 +33,6 @@ phases:
       - npm -v
   build:
      commands:  
-      - npm run build
       - ls -l .
       - $(aws ecr get-login --no-include-email)    
       - docker build --tag "$AWS_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/babelhealth:$LABEL" -f ./Dockerfile .
