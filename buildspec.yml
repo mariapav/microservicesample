@@ -13,10 +13,10 @@ phases:
       - apt-get update && apt-get -y install dnsutils jq python3-pip python3-dev && pip3 install --upgrade awscli
     
   pre_build:
-    commands:
-	  - echo "INSTALLING NPM"
+     commands:
+      - echo "INSTALLING NPM"
       - npm install
-	  - npm -v
+      - npm -v
       - LABEL=$(echo "bulletin-board-app_$CODEBUILD_RESOLVED_SOURCE_VERSION")
       - export AWS_ACCOUNT=$(echo $CODEBUILD_BUILD_ARN |cut -f5 -d:)
       - export _PROFILE_=${_PROFILE_}
